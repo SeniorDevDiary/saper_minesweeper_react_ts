@@ -1,8 +1,15 @@
 import React from "react";
 import Cell from "./Cell";
 
+interface CellData {
+  value: number;
+  isRevealed: boolean;
+  isMine: boolean;
+  isFlagged: boolean;
+}
+
 interface BoardProps {
-  board: Array<Array<any>>;
+  board: CellData[][];
   onClick: (x: number, y: number) => void;
   onRightClick: (x: number, y: number, e: React.MouseEvent) => void;
 }
@@ -12,7 +19,7 @@ const Board: React.FC<BoardProps> = ({ board, onClick, onRightClick }) => {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: `repeat(${board.length}, 40px)`,
+        gridTemplateColumns: `repeat(${board[0].length}, 40px)`,
       }}
     >
       {board.map((row, rowIndex) =>

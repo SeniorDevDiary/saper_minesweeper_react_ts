@@ -1,7 +1,7 @@
 import React from "react";
 
 interface CellProps {
-  value: string | number;
+  value: number;
   isRevealed: boolean;
   isMine: boolean;
   isFlagged: boolean;
@@ -20,7 +20,11 @@ const Cell: React.FC<CellProps> = ({
   let content = "";
 
   if (isRevealed) {
-    content = isMine ? "💣" : value.toString();
+    if (isMine) {
+      content = "💣";
+    } else if (value > 0) {
+      content = value.toString();
+    }
   } else if (isFlagged) {
     content = "🚩";
   }
